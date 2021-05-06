@@ -5,7 +5,8 @@
 import random
 from random import randint
 
-start = False
+start = True
+playAgain = False
 
 playerScore = 0
 computerScore = 0
@@ -56,15 +57,27 @@ def showResult(playerMove, computerMove):
 def updateScore(winner):
     global playerScore
     global computerScore
+    global start
+    
     if winner == 0:
         playerScore += 1
     else:
        computerScore += 1
     
     print("| Player: %d | Computer: %d | \n" % (playerScore, computerScore))
+
+    userPlayAgain = input("Play again? (Y/N): ")
+    while userPlayAgain != 'Y' and userPlayAgain != 'N':
+        userPlayAgain = input("Play again? (Y/N): ")
+
+    if userPlayAgain == 'Y':
+        start = True
+    else:
+        start = False
+        
         
 def main():
-    while start == False:
+    while start == True:
     	playerMove = input("Enter your move (R, P, S): ")
     	computerMove = getRandomMove()
     	showResult(playerMove, computerMove)
